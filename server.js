@@ -12,6 +12,13 @@ function formatDate(date) {
 }
 
 const server = http.createServer((req, res) => {
+  // Ignore favicon.ico requests
+  if (req.url === '/favicon.ico') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
   if (req.url === '/special-page') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('This is a special page!');
